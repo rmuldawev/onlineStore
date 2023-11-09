@@ -1,7 +1,51 @@
-import {Text} from 'react-native';
+import React from 'react';
+import {
+  NativeStackScreenProps,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
+import LogIn from '../screens/LogIn';
+import TabNavigator from './TabNavigator';
+
+export type LoginStackParamList = {
+  SignIn: undefined;
+};
+
+// export type AppStackScreenProps = NativeStackScreenProps<
+//   LoginStackParamList,
+//   'SignIn'
+// >;
+
+export type MainStackParamList = {
+  // MusicPlayer: {};
+  // CatalogScreen: any;
+  // Sounds: {data: object[]} | undefined;
+  // FAQ: undefined;
+  // Settings: undefined;
+  HomeScreen: undefined;
+};
+export type AppStackScreenProps = NativeStackScreenProps<
+  MainStackParamList,
+  'HomeScreen'
+>;
 
 const MainNavigator = () => {
-  return <Text>Ruslan dsdsdsd</Text>;
+  const noHeaderStyle = {headerShown: false};
+
+  const Stack = createNativeStackNavigator();
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen
+        name="TabNavigator"
+        component={TabNavigator}
+        options={{...noHeaderStyle}}
+      />
+      <Stack.Screen component={LogIn} name="SignIn" />
+    </Stack.Navigator>
+  );
 };
 
 export default MainNavigator;

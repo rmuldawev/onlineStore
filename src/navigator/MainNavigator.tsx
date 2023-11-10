@@ -22,6 +22,9 @@ export type MainStackParamList = {
   // FAQ: undefined;
   // Settings: undefined;
   HomeScreen: undefined;
+  Cart: undefined;
+  LogIn: undefined;
+  TabNavigator: undefined;
 };
 export type AppStackScreenProps = NativeStackScreenProps<
   MainStackParamList,
@@ -38,12 +41,13 @@ const MainNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
+      <Stack.Screen component={LogIn} name="LogIn" />
+
       <Stack.Screen
         name="TabNavigator"
         component={TabNavigator}
         options={{...noHeaderStyle}}
       />
-      <Stack.Screen component={LogIn} name="SignIn" />
     </Stack.Navigator>
   );
 };

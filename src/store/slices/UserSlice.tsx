@@ -1,4 +1,9 @@
-import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  createAction,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface User {
@@ -9,12 +14,14 @@ interface User {
 
 interface UserState {
   users: User[];
+  currentUser: [] | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
 
 const initialState: UserState = {
   users: [],
+  currentUser: [],
   status: 'idle',
   error: null,
 };
@@ -51,4 +58,5 @@ const userSlice = createSlice({
 
 export const selectUsers = (state: RootState) => state.login.users;
 export const selectError = (state: RootState) => state.login.error;
+
 export default userSlice.reducer;

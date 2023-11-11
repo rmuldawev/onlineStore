@@ -5,17 +5,25 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserSlice from '../store/slices/UserSlice';
+import GoodsSlice from './slices/GoodsSlice';
 
 const persistNoteConfig = {
-  key: 'note',
+  key: 'users',
+  storage: AsyncStorage,
+};
+
+const persistGoodsConfig = {
+  key: 'goods',
   storage: AsyncStorage,
 };
 
 const persistLoginReducer = persistReducer(persistNoteConfig, UserSlice);
+const persistGoodsReducer = persistReducer(persistGoodsConfig, GoodsSlice);
 
 const store = configureStore({
   reducer: {
     login: persistLoginReducer,
+    goods: persistGoodsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

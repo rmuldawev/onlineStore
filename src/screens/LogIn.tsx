@@ -17,6 +17,8 @@ import {useKeyboardAvoidingBottomPadding} from '../hooks/KeyboardAvoidingHook';
 import {useAppDispatch, useAppSelector} from '../store';
 import {getUsers, selectUsers} from '../store/slices/UserSlice';
 import {useEffect, useState} from 'react';
+import {useAtomValue, useSetAtom} from 'jotai';
+import {currentUserAtom} from '../utils/atoms/currentUserAtom';
 
 const validationSchema = yup.object({
   login: yup.string().required('Это поле не должно быть пустым'),
@@ -27,6 +29,8 @@ const LogIn = () => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsers);
   const [error, setError] = useState<string>('');
+  const currentUser = useAtomValue(currentUserAtom);
+  const setCurrentUSerAtom = useSetAtom(currentUserAtom);
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
@@ -50,6 +54,7 @@ const LogIn = () => {
     );
 
     if (user) {
+      setCurrentUSerAtom(user);
       navigation.navigate('TabNavigator');
     } else {
       setError('Неверный логин или пароль');

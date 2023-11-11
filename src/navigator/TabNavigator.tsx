@@ -6,6 +6,7 @@ import HomeScreen from '../screens/TabNavigatorScreens/HomeScreen';
 import Cart from '../screens/TabNavigatorScreens/Cart';
 import PRofile from '../screens/TabNavigatorScreens/Profile';
 import Tabbar from './TabBar/TabBar';
+import AboutProductScreen from '../screens/AboutProductScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,16 +19,12 @@ function HomeStackScreens() {
         component={HomeScreen}
         options={{...noHeaderStyle}}
       />
-      {/* <Stack.Screen
-        name="CatalogScreen"
-        component={Cart}
+      <Stack.Screen name="Cart" component={Cart} options={{...noHeaderStyle}} />
+      <Stack.Screen
+        name="AboutProduct"
+        component={AboutProductScreen}
         options={{...noHeaderStyle}}
-      /> */}
-      {/* <Stack.Screen
-        name="MusicPlayer"
-        component={MusicPlayer}
-        options={{...noHeaderStyle}}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
@@ -41,12 +38,6 @@ const TabNavigator = () => {
         name="HomeStackScreens"
         component={HomeStackScreens}
         options={{...noHeaderStyle, tabBarLabel: 'Товары'}}
-      />
-
-      <Tab.Screen
-        name="Cart"
-        component={Cart}
-        options={{...noHeaderStyle, tabBarLabel: 'Корзина'}}
       />
       <Tab.Screen
         name="Profile"

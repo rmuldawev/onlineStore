@@ -1124,6 +1124,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-object-assign@npm:^7.16.7":
+  version: 7.23.3
+  resolution: "@babel/plugin-transform-object-assign@npm:7.23.3"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.22.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: c19eafedfe3197937aab79b4c6129f9fb7138b0173d3741d1068f589ee0e238f49b2d7a392d7fb8d1218f526f1279bda8e941b111f1698ea3e35e2d0ee60a94e
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-object-rest-spread@npm:^7.23.3":
   version: 7.23.3
   resolution: "@babel/plugin-transform-object-rest-spread@npm:7.23.3"
@@ -1544,7 +1555,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.13.0":
+"@babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.16.7":
   version: 7.23.3
   resolution: "@babel/preset-typescript@npm:7.23.3"
   dependencies:
@@ -1646,6 +1657,15 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: ced2ae2b0f27a873907bbd9a715209f986b73b4674eb8492446aa09c97be7970952224e79d350239ce987a5a96a7a269a90d24aa7b0410cdb89ef46556725f9e
+  languageName: node
+  linkType: hard
+
+"@egjs/hammerjs@npm:^2.0.17":
+  version: 2.0.17
+  resolution: "@egjs/hammerjs@npm:2.0.17"
+  dependencies:
+    "@types/hammerjs": ^2.0.36
+  checksum: 8945137cec5837edd70af3f2e0ea621543eb0aa3b667e6269ec6485350f4d120c2434b37c7c30b1cf42a65275dd61c1f24626749c616696d3956ac0c008c4766
   languageName: node
   linkType: hard
 
@@ -3783,6 +3803,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 79d746a8f053954bba36bd3d94a90c78de995d126289d656fb3271dd9f1229d33f678da04d10bce6be440494a5a73438e2e363e92802d16b8315b051036c5256
+  languageName: node
+  linkType: hard
+
+"@types/hammerjs@npm:^2.0.36":
+  version: 2.0.44
+  resolution: "@types/hammerjs@npm:2.0.44"
+  checksum: fb0a1ad24e189fb478cd39a5f93b4fad636522c4e0907f40caa329627cba267de5397c1bddcdabb431f85638a3671e8b0f22fc11347846a7be107a67007cd496
   languageName: node
   linkType: hard
 
@@ -9140,14 +9167,16 @@ __metadata:
     react: 18.2.0
     react-hook-form: ^7.48.2
     react-native: 0.72.6
+    react-native-gesture-handler: ^2.13.4
+    react-native-image-slider-box: ^2.0.7
     react-native-masonry-list: ^2.16.1
     react-native-pager-view: ^6.2.2
+    react-native-reanimated: ^3.5.4
     react-native-safe-area-context: 3.3.2
     react-native-screens: ^3.27.0
     react-native-size-matters: ^0.4.2
-    react-native-snap-carousel: ^3.9.1
     react-native-svg: ^13.14.0
-    react-native-swipeable-carousel: ^1.0.7
+    react-native-swiper-flatlist: ^3.2.3
     react-navigation-tabs: ^2.11.2
     react-redux: ^8.1.3
     react-test-renderer: 18.2.0
@@ -9494,7 +9523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:*, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+"prop-types@npm:*, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -9634,6 +9663,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-gesture-handler@npm:^2.13.4":
+  version: 2.13.4
+  resolution: "react-native-gesture-handler@npm:2.13.4"
+  dependencies:
+    "@egjs/hammerjs": ^2.0.17
+    hoist-non-react-statics: ^3.3.0
+    invariant: ^2.2.4
+    lodash: ^4.17.21
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 32d704d16270eefedc596b198063943bd9d539e66605ae135550f70c551c6a0a060dfa9b973b651c47e845632d55a78f321245d979107d4f6669e788d4a6582d
+  languageName: node
+  linkType: hard
+
+"react-native-image-slider-box@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "react-native-image-slider-box@npm:2.0.7"
+  dependencies:
+    react-native-snap-carousel: latest
+  checksum: 81893e9b5f1ae713e9375408806af2f2f95d7aa1e4ded79c85d4e28a4b7ae982bfe545e5b9a3aea8cfff619c080178bcea5a10c9f5952754a2c21504c8abcdc8
+  languageName: node
+  linkType: hard
+
 "react-native-iphone-x-helper@npm:^1.3.0":
   version: 1.3.1
   resolution: "react-native-iphone-x-helper@npm:1.3.1"
@@ -9662,6 +9716,27 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: ac563431c10e96ff28367e57310ebd6901e1ddd532430802cab03ed9a216f85cf9567e05aaf7fd58bb1a328ffac11e1f0f19907cf55103a487c103e2f6d2e390
+  languageName: node
+  linkType: hard
+
+"react-native-reanimated@npm:^3.5.4":
+  version: 3.5.4
+  resolution: "react-native-reanimated@npm:3.5.4"
+  dependencies:
+    "@babel/plugin-transform-object-assign": ^7.16.7
+    "@babel/preset-typescript": ^7.16.7
+    convert-source-map: ^2.0.0
+    invariant: ^2.2.4
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.0.0-0
+    "@babel/plugin-proposal-optional-chaining": ^7.0.0-0
+    "@babel/plugin-transform-arrow-functions": ^7.0.0-0
+    "@babel/plugin-transform-shorthand-properties": ^7.0.0-0
+    "@babel/plugin-transform-template-literals": ^7.0.0-0
+    react: "*"
+    react-native: "*"
+  checksum: 885449b11324f0399128d665c90e7179a095dfa603dd251e8b1d14df2efe73411acd724562837e114366769e69b8aac2b0a2ffc1f63d2b7dbf1a35024f074604
   languageName: node
   linkType: hard
 
@@ -9697,7 +9772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-snap-carousel@npm:^3.9.1":
+"react-native-snap-carousel@npm:latest":
   version: 3.9.1
   resolution: "react-native-snap-carousel@npm:3.9.1"
   dependencies:
@@ -9723,14 +9798,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-swipeable-carousel@npm:^1.0.7":
-  version: 1.0.56
-  resolution: "react-native-swipeable-carousel@npm:1.0.56"
+"react-native-swiper-flatlist@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "react-native-swiper-flatlist@npm:3.2.3"
   peerDependencies:
-    react-native-pager-view: ^6.1.2
-    react-native-size-matters: ">=0.4.0"
-    react-native-svg: ">=12.3.0"
-  checksum: 0e97bd2077d7131c776815a24573991dd96969446005eb259a819a1628770d7095592a6826f80b9bbc0d5a6a89fe1671bf03d7f67272339bdad926f96ad0839d
+    react-native: ">=0.59.0"
+  checksum: 5a90b90a2c3d896f3fa1bcf466642234dc90eef3711cb4e394c57e168daaa98d64b862a848b27865851a8a941c37598c6cc1a3d80d7f809523d584cef1e4f834
   languageName: node
   linkType: hard
 

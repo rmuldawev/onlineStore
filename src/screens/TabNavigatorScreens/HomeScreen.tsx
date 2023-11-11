@@ -53,7 +53,7 @@ const HomeScreen = () => {
                 <GoodItem
                   rating={item.rating}
                   price={item.price}
-                  image={item.images[0]}
+                  image={item.thumbnail}
                   title={item.title}
                 />
               </Pressable>

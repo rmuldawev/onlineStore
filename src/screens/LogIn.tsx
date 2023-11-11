@@ -14,19 +14,25 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import {useKeyboardAvoidingBottomPadding} from '../hooks/KeyboardAvoidingHook';
+import {useAppDispatch, useAppSelector} from '../store';
+import {getUsers, selectUsers} from '../store/slices/UserSlice';
+import {useEffect, useState} from 'react';
 
 const validationSchema = yup.object({
-  login: yup
-    .string()
-    .email('Пожалуйста введите правильный email')
-    .required('Это поле не должно быть пустым'),
-  password: yup.string().min(8, 'Введите пароль').required(),
+  login: yup.string().required('Это поле не должно быть пустым'),
+  password: yup.string().min(8, 'Должно быть минимум 8 символов').required(),
 });
 
 const LogIn = () => {
+  const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
+  const [error, setError] = useState<string>('');
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   const navigation = useNavigation<AppStackScreenProps['navigation']>();
   const pb = useKeyboardAvoidingBottomPadding();
-
   const methods = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
@@ -37,10 +43,19 @@ const LogIn = () => {
     getValues,
   } = methods;
 
-  const onPress = () => {
-    navigation.navigate('TabNavigator');
-    console.log('isValid', isValid);
+  const handleLogin = () => {
+    const res = getValues();
+    const user = users.find(
+      u => u.username === res.login && u.password === res.password,
+    );
+
+    if (user) {
+      navigation.navigate('TabNavigator');
+    } else {
+      setError('Неверный логин или пароль');
+    }
   };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -68,7 +83,9 @@ const LogIn = () => {
                   Back!
                 </Text>
               </Box>
-
+              <Text h={5} color={colors.red} fontSize={10}>
+                {error.length > 0 ? error : null}
+              </Text>
               <TextInput
                 error={errors.login}
                 name="login"
@@ -86,7 +103,7 @@ const LogIn = () => {
             <CustomButton
               name="Продолжить"
               isDisabled={!isValid}
-              onPress={onPress}
+              onPress={handleLogin}
             />
           </VStack>
         </FormProvider>

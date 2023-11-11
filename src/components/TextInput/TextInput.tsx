@@ -55,6 +55,7 @@ const TextInput: FC<TextInputProps> = ({
                 _focus={{borderWidth: 0, bg: '#ffffff'}}
                 value={value}
                 onChangeText={onChange}
+                autoCorrect={false}
                 placeholder={placeholder}
               />
             </HStack>

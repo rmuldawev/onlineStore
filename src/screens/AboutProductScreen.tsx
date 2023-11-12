@@ -1,33 +1,33 @@
-import {
-  Box,
-  HStack,
-  Hidden,
-  Image,
-  ScrollView,
-  Text,
-  VStack,
-} from 'native-base';
-import ScreenHeader from '../components/ScreenHeader';
+import {Box, HStack, Image, ScrollView, Text, VStack} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {AppStackScreenProps} from '../navigator/MainNavigator';
-import SwiperFlatList from 'react-native-swiper-flatlist';
 import {Dimensions} from 'react-native';
-import {colors} from '../theme/styledComponentsTheme';
+import SwiperFlatList from 'react-native-swiper-flatlist';
+//components
+import ScreenHeader from '../components/ScreenHeader';
 import CustomButton from '../components/CustomButton';
+//theme
+import {colors} from '../theme/styledComponentsTheme';
+//redux
+import {useAppDispatch} from '../store';
+import {addToCart} from '../store/slices/CartSlice';
 
 const AboutProductScreen = ({route}: any) => {
+  const dispatch = useAppDispatch();
   const {width} = Dimensions.get('screen');
   const navigation = useNavigation<AppStackScreenProps['navigation']>();
   const data = route.params;
 
-  console.log(data);
+  const handleAddToCart = () => {
+    dispatch(addToCart(data));
+  };
 
   return (
     <Box safeAreaTop>
       <Box pl={'16px'} pr={'16px'}>
         <ScreenHeader onPress={() => navigation.navigate('Cart')} />
       </Box>
-      <ScrollView pl={'5px'} pr={'5px'}>
+      <ScrollView pl={'5px'} pr={'5px'} showsVerticalScrollIndicator={false}>
         <SwiperFlatList
           horizontal
           autoplay
@@ -60,7 +60,10 @@ const AboutProductScreen = ({route}: any) => {
           <Text fontWeight={'bold'} mt={2}>
             Описание товара:
           </Text>
-          <Text fontWeight={'bold'}>{data.description}</Text>
+          <Text fontWeight={'medium'}>{data.description}</Text>
+          <Text mt={2} fontWeight={'bold'}>
+            Количество: {data.stock} шт
+          </Text>
         </VStack>
         <HStack mt={2} mb={10} justifyContent={'space-between'} pl={4} pr={4}>
           <Text fontWeight={'bold'}>Цена: </Text>
@@ -69,6 +72,7 @@ const AboutProductScreen = ({route}: any) => {
           </Text>
         </HStack>
         <CustomButton
+          onPress={handleAddToCart}
           style={{backgroundColor: '#3F92FF'}}
           name="Добавить в корзину"
         />

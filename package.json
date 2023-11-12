@@ -29,6 +29,7 @@
     "react-native-gesture-handler": "^2.13.4",
     "react-native-image-slider-box": "^2.0.7",
     "react-native-masonry-list": "^2.16.1",
+    "react-native-modal": "^13.0.1",
     "react-native-pager-view": "^6.2.2",
     "react-native-reanimated": "^3.5.4",
     "react-native-safe-area-context": "3.3.2",

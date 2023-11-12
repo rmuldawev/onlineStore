@@ -1,24 +1,28 @@
 import {Box, Text, VStack} from 'native-base';
-import {colors} from '../theme/styledComponentsTheme';
-import TextInput from '../components/TextInput/TextInput';
-import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {useNavigation} from '@react-navigation/native';
-import {AppStackScreenProps} from '../navigator/MainNavigator';
-import {FormProvider, useForm} from 'react-hook-form';
-import CustomButton from '../components/CustomButton';
 import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
 } from 'react-native';
+import {useEffect, useState} from 'react';
+import * as yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {useNavigation} from '@react-navigation/native';
+import {AppStackScreenProps} from '../navigator/MainNavigator';
+import {FormProvider, useForm} from 'react-hook-form';
 import {useKeyboardAvoidingBottomPadding} from '../hooks/KeyboardAvoidingHook';
+//redux
 import {useAppDispatch, useAppSelector} from '../store';
 import {getUsers, selectUsers} from '../store/slices/UserSlice';
-import {useEffect, useState} from 'react';
+//utils
 import {useAtomValue, useSetAtom} from 'jotai';
 import {currentUserAtom} from '../utils/atoms/currentUserAtom';
+//components
+import TextInput from '../components/TextInput/TextInput';
+import CustomButton from '../components/CustomButton';
+//theme
+import {colors} from '../theme/styledComponentsTheme';
 
 const validationSchema = yup.object({
   login: yup.string().required('Это поле не должно быть пустым'),
@@ -33,7 +37,7 @@ const LogIn = () => {
   const setCurrentUSerAtom = useSetAtom(currentUserAtom);
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+  }, []);
 
   const navigation = useNavigation<AppStackScreenProps['navigation']>();
   const pb = useKeyboardAvoidingBottomPadding();

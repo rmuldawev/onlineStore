@@ -5,6 +5,8 @@ import Cart from '../assets/icons/Cart';
 import ArrowLeft from '../assets/icons/ArrowLeft';
 import {useNavigation} from '@react-navigation/native';
 import {AppStackScreenProps} from '../navigator/MainNavigator';
+import {useAppSelector} from '../store';
+import {selectCart} from '../store/slices/CartSlice';
 
 interface ScreenHeaderProps {
   onPress?: () => void;
@@ -12,6 +14,7 @@ interface ScreenHeaderProps {
 }
 
 const ScreenHeader: FC<ScreenHeaderProps> = ({onPress, title}) => {
+  const cart = useAppSelector(selectCart);
   const navigation = useNavigation<AppStackScreenProps['navigation']>();
 
   return (
@@ -19,7 +22,7 @@ const ScreenHeader: FC<ScreenHeaderProps> = ({onPress, title}) => {
       {title ? (
         <Text>{title}</Text>
       ) : (
-        <Pressable onPress={() => navigation.goBack()}>
+        <Pressable onPress={() => navigation.goBack()} w={10}>
           <ArrowLeft />
         </Pressable>
       )}
@@ -30,6 +33,9 @@ const ScreenHeader: FC<ScreenHeaderProps> = ({onPress, title}) => {
         h={'40px'}
         w={'40px'}>
         <Cart />
+        <Text bottom={3} position={'absolute'}>
+          {cart.cart.length > 0 && cart.cart.length}
+        </Text>
       </Pressable>
     </HStack>
   );

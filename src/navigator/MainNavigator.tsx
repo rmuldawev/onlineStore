@@ -10,23 +10,14 @@ export type LoginStackParamList = {
   SignIn: undefined;
 };
 
-// export type AppStackScreenProps = NativeStackScreenProps<
-//   LoginStackParamList,
-//   'SignIn'
-// >;
-
 export type MainStackParamList = {
-  // MusicPlayer: {};
-  // CatalogScreen: any;
-  // Sounds: {data: object[]} | undefined;
-  // FAQ: undefined;
-  // Settings: undefined;
   HomeScreen: undefined;
   Cart: undefined;
   LogIn: undefined;
   TabNavigator: undefined;
   Profile: undefined;
   AboutProduct: undefined;
+  ShopingBag: {} | undefined;
 };
 export type AppStackScreenProps = NativeStackScreenProps<
   MainStackParamList,

@@ -23,7 +23,6 @@ const HomeScreen = () => {
   const dispatch = useAppDispatch();
   const [data, setData] = useState<{products?: any[]}>({});
   const currentUser = useAtomValue(currentUserAtom);
-  console.log('currentUser', currentUser);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +39,10 @@ const HomeScreen = () => {
 
   return (
     <Box flex={1} safeAreaTop pr={'16px'} pl={'16px'}>
-      <ScreenHeader title="Goods" onPress={() => navigation.navigate('Cart')} />
+      <ScreenHeader
+        title="Товары"
+        onPress={() => navigation.navigate('Cart')}
+      />
       {data.products && data.products.length > 0 ? (
         <MasonryList
           data={data.products}

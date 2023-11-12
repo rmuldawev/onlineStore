@@ -35,13 +35,13 @@ const MainNavigator = () => {
         headerShown: false,
       }}>
       <Stack.Screen
-        name="TabNavigator"
-        component={TabNavigator}
+        component={LogIn}
+        name="LogIn"
         options={{...noHeaderStyle, gestureEnabled: false}}
       />
       <Stack.Screen
-        component={LogIn}
-        name="LogIn"
+        name="TabNavigator"
+        component={TabNavigator}
         options={{...noHeaderStyle, gestureEnabled: false}}
       />
     </Stack.Navigator>

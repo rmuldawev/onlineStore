@@ -7,6 +7,7 @@ import Cart from '../screens/TabNavigatorScreens/Cart';
 import PRofile from '../screens/TabNavigatorScreens/Profile';
 import Tabbar from './TabBar/TabBar';
 import AboutProductScreen from '../screens/AboutProductScreen';
+import ShopingBag from '../screens/ShopingBag';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,10 +20,15 @@ function HomeStackScreens() {
         component={HomeScreen}
         options={{...noHeaderStyle}}
       />
-      <Stack.Screen name="Cart" component={Cart} options={{...noHeaderStyle}} />
       <Stack.Screen
         name="AboutProduct"
         component={AboutProductScreen}
+        options={{...noHeaderStyle}}
+      />
+      <Stack.Screen name="Cart" component={Cart} options={{...noHeaderStyle}} />
+      <Stack.Screen
+        name="ShopingBag"
+        component={ShopingBag}
         options={{...noHeaderStyle}}
       />
     </Stack.Navigator>

@@ -1,9 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  PayloadAction,
-  createAction,
-} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface User {

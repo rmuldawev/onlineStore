@@ -8,8 +8,8 @@ interface CustomInputProps {
 
 const CustomInput: FC<CustomInputProps> = ({title, value}) => {
   return (
-    <Box>
-      <Text>{title}</Text>
+    <Box mt={'5px'}>
+      <Text fontSize={'12px'}>{title}</Text>
       <Input
         borderRadius={'8px'}
         h={'48px'}

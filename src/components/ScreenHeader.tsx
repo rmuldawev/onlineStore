@@ -156,6 +156,7 @@ const ScreenHeader: FC<ScreenHeaderProps> = ({onPress, title}) => {
             ? selectData.products.map((e: any, i: number) => {
                 return (
                   <Pressable
+                    key={i}
                     p={2}
                     onPress={() => navigation.navigate('AboutProduct', e)}>
                     <Text>{e.title}</Text>

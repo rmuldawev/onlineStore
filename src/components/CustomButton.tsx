@@ -6,7 +6,7 @@ interface CustomButtonProps {
   name: string;
   onPress?: () => void;
   isDisabled?: boolean;
-  style?: ViewStyle;
+  style?: ViewStyle | ViewStyle[];
 }
 
 const CustomButton: FC<CustomButtonProps> = ({

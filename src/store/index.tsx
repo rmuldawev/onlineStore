@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserSlice from '../store/slices/UserSlice';
 import GoodsSlice from './slices/GoodsSlice';
 import CartSlice from './slices/CartSlice';
+import SearchSlice from './slices/SearchSlice';
 
 const persistNoteConfig = {
   key: 'users',
@@ -22,15 +23,22 @@ const persistCartConfig = {
   storage: AsyncStorage,
 };
 
+const persistSearchConfig = {
+  key: 'search',
+  storage: AsyncStorage,
+};
+
 const persistLoginReducer = persistReducer(persistNoteConfig, UserSlice);
 const persistGoodsReducer = persistReducer(persistGoodsConfig, GoodsSlice);
 const persistCartReducer = persistReducer(persistCartConfig, CartSlice);
+const persistSearchReducer = persistReducer(persistSearchConfig, SearchSlice);
 
 const store = configureStore({
   reducer: {
     login: persistLoginReducer,
     goods: persistGoodsReducer,
     cart: persistCartReducer,
+    search: persistSearchReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

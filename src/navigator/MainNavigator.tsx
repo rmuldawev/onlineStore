@@ -13,7 +13,7 @@ export type LoginStackParamList = {
 export type MainStackParamList = {
   HomeScreen: undefined;
   Cart: undefined;
-  LogIn: undefined;
+  LogIn: {} | undefined;
   TabNavigator: undefined;
   Profile: undefined;
   AboutProduct: undefined;
@@ -34,12 +34,13 @@ const MainNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
+      <Stack.Screen component={LogIn} name="LogIn" />
+
       <Stack.Screen
         name="TabNavigator"
         component={TabNavigator}
         options={{...noHeaderStyle}}
       />
-      <Stack.Screen component={LogIn} name="LogIn" />
     </Stack.Navigator>
   );
 };

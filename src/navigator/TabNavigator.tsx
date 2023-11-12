@@ -5,7 +5,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/TabNavigatorScreens/HomeScreen';
 import Cart from '../screens/TabNavigatorScreens/Cart';
 import PRofile from '../screens/TabNavigatorScreens/Profile';
-import Tabbar from './TabBar/TabBar';
 import AboutProductScreen from '../screens/AboutProductScreen';
 import ShopingBag from '../screens/ShopingBag';
 
@@ -18,7 +17,7 @@ function HomeStackScreens() {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{...noHeaderStyle}}
+        options={{...noHeaderStyle, gestureEnabled: false}}
       />
       <Stack.Screen
         name="AboutProduct"
@@ -39,9 +38,7 @@ const TabNavigator = () => {
   const paddingStyle = {paddingTop: top + 15, paddingBottom: bottom + 15};
   const noHeaderStyle = {headerShown: false};
   return (
-    <Tab.Navigator
-    //  tabBar={props => <Tabbar {...props} style={paddingStyle} />}
-    >
+    <Tab.Navigator>
       <Tab.Screen
         name="HomeStackScreens"
         component={HomeStackScreens}

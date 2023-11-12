@@ -34,12 +34,16 @@ const MainNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen component={LogIn} name="LogIn" />
+      <Stack.Screen
+        component={LogIn}
+        name="LogIn"
+        options={{...noHeaderStyle, gestureEnabled: false}}
+      />
 
       <Stack.Screen
         name="TabNavigator"
         component={TabNavigator}
-        options={{...noHeaderStyle}}
+        options={{...noHeaderStyle, gestureEnabled: false}}
       />
     </Stack.Navigator>
   );

@@ -4,8 +4,11 @@ import {useState} from 'react';
 import ScreenHeader from '../components/ScreenHeader';
 import BuyButton from '../components/ByuButton';
 import BuyConfirmModal from '../components/modals/BuyConfirmModal';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const ShopingBag = ({route}: any) => {
+  const {bottom, top} = useSafeAreaInsets();
+  const paddingStyle = {paddingTop: top + 40, paddingBottom: bottom};
   const data = route.params;
   const pricesAsNumbers = data.map((e: any) => parseFloat(e.price));
   const totalPrice = pricesAsNumbers.reduce((a: number, b: number) => a + b);
@@ -17,11 +20,8 @@ const ShopingBag = ({route}: any) => {
 
   return (
     <>
-      <Box safeAreaTop pl={'16px'} pr={'16px'}>
-        <ScreenHeader />
-      </Box>
-
-      <ScrollView pl={'16px'} pr={'16px'}>
+      <ScreenHeader />
+      <ScrollView style={paddingStyle} pl={'16px'} pr={'16px'}>
         <Text fontWeight={'bold'} fontSize={'md'}>
           Оформление заказа
         </Text>
@@ -38,7 +38,7 @@ const ShopingBag = ({route}: any) => {
             );
           })}
         <HStack alignItems={'center'} justifyContent={'space-between'} mt={3}>
-          <Text>Общая сумма: {totalPrice}</Text>
+          <Text fontWeight={'bold'}>Общая сумма: $ {totalPrice}</Text>
           <BuyButton text="Совершить покупку" OnPress={openBuyConfirmModal} />
         </HStack>
       </ScrollView>

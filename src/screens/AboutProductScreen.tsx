@@ -11,8 +11,11 @@ import {colors} from '../theme/styledComponentsTheme';
 //redux
 import {useAppDispatch} from '../store';
 import {addToCart} from '../store/slices/CartSlice';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const AboutProductScreen = ({route}: any) => {
+  const {bottom, top} = useSafeAreaInsets();
+  const paddingStyle = {paddingTop: top + 40, paddingBottom: bottom};
   const dispatch = useAppDispatch();
   const {width} = Dimensions.get('screen');
   const navigation = useNavigation<AppStackScreenProps['navigation']>();
@@ -23,11 +26,13 @@ const AboutProductScreen = ({route}: any) => {
   };
 
   return (
-    <Box safeAreaTop>
-      <Box pl={'16px'} pr={'16px'}>
-        <ScreenHeader onPress={() => navigation.navigate('Cart')} />
-      </Box>
-      <ScrollView pl={'5px'} pr={'5px'} showsVerticalScrollIndicator={false}>
+    <>
+      <ScreenHeader onPress={() => navigation.navigate('Cart')} />
+      <ScrollView
+        style={paddingStyle}
+        pl={'5px'}
+        pr={'5px'}
+        showsVerticalScrollIndicator={false}>
         <SwiperFlatList
           horizontal
           autoplay
@@ -77,7 +82,7 @@ const AboutProductScreen = ({route}: any) => {
           name="Добавить в корзину"
         />
       </ScrollView>
-    </Box>
+    </>
   );
 };
 

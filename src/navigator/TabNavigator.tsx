@@ -39,7 +39,9 @@ const TabNavigator = () => {
   const paddingStyle = {paddingTop: top + 15, paddingBottom: bottom + 15};
   const noHeaderStyle = {headerShown: false};
   return (
-    <Tab.Navigator tabBar={props => <Tabbar {...props} style={paddingStyle} />}>
+    <Tab.Navigator
+    //  tabBar={props => <Tabbar {...props} style={paddingStyle} />}
+    >
       <Tab.Screen
         name="HomeStackScreens"
         component={HomeStackScreens}

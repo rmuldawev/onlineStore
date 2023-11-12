@@ -1,29 +1,34 @@
 import {Keyboard, TouchableWithoutFeedback} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../../store';
-import {getGoods, selectGoods} from '../../store/slices/GoodsSlice';
+import {useAppDispatch} from '../../store';
+import {getGoods} from '../../store/slices/GoodsSlice';
 import {useEffect, useState} from 'react';
-import {Box, FlatList, Image, Pressable, ScrollView, Text} from 'native-base';
-import {colors} from '../../theme/styledComponentsTheme';
+import {Box, HStack, Pressable, Text} from 'native-base';
 import ScreenHeader from '../../components/ScreenHeader';
-import {currentUserAtom} from '../../utils/atoms/currentUserAtom';
-import {useAtomValue, useSetAtom} from 'jotai';
 import {useNavigation} from '@react-navigation/native';
 import {AppStackScreenProps} from '../../navigator/MainNavigator';
 import MasonryList from '@react-native-seoul/masonry-list';
 import GoodItem from '../../components/GoodItem';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
-interface GoodItemProps {
-  title: string;
-  image: string;
-}
+import Modal from 'react-native-modal';
 
 const HomeScreen = () => {
+  const categories = [
+    'all',
+    'smartphones',
+    'laptops',
+    'fragrances',
+    'skincare',
+    'groceries',
+    'home-decoration',
+  ];
+
   const navigation = useNavigation<AppStackScreenProps['navigation']>();
   const {bottom, top} = useSafeAreaInsets();
   const paddingStyle = {paddingTop: top + 40, paddingBottom: bottom};
   const dispatch = useAppDispatch();
   const [data, setData] = useState<{products?: any[]}>({});
+  const [isVisibleModal, setIsVisibleModal] = useState<boolean>(false);
+  const [currCategory, setCurrCategory] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +43,10 @@ const HomeScreen = () => {
     fetchData();
   }, [dispatch]);
 
+  const filteredProducts = currCategory
+    ? data.products?.filter((product: any) => product.category === currCategory)
+    : data.products;
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <>
@@ -46,9 +55,31 @@ const HomeScreen = () => {
           onPress={() => navigation.navigate('Cart')}
         />
         <Box flex={1} pr={'16px'} pl={'16px'} style={paddingStyle}>
+          <HStack justifyContent={'space-between'}>
+            <Text>Категории:</Text>
+            <Pressable onPress={() => setIsVisibleModal(true)}>
+              <Text>{currCategory}</Text>
+            </Pressable>
+            <Modal
+              isVisible={isVisibleModal}
+              onBackdropPress={() => setIsVisibleModal(false)}>
+              {categories.map((e, i) => {
+                return (
+                  <Pressable
+                    onPress={() => [
+                      setCurrCategory(e),
+                      setIsVisibleModal(false),
+                    ]}
+                    bg={'white'}>
+                    <Text key={i}>{e}</Text>
+                  </Pressable>
+                );
+              })}
+            </Modal>
+          </HStack>
           {data.products && data.products.length > 0 ? (
             <MasonryList
-              data={data.products}
+              data={currCategory === 'all' ? data.products : filteredProducts}
               keyExtractor={item => item.id}
               numColumns={2}
               renderItem={({item}: any) => {
